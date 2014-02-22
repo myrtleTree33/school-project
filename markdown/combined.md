@@ -16,26 +16,47 @@ Typing LaTeX reports for short school projects is a pain.  Writing Markdown's ea
 
 I needed it for my assignments.
 
+
 ### Installation
 
 `generator-school-report` runs on NodeJS and Ruby.  You'll also need `compass`, `coffee` and `sass`.
 
 Install `grunt`, `grunt-cli`, `bower`, and `yo`, as per the Yeoman framework.  Then run:
 
-	$ npm install -g generator-school-report
-	$ mkdir my-first-report && cd $_
-	$ yo school-report
+```bash
+$ npm install -g generator-school-report
+$ mkdir my-first-report && cd $_
+$ yo school-report
+```
 
 To start the server:
 
-	$ grunt server
+```bash
+$ grunt server
+```
 
 You've got a Live, printer-friendly school report going!
+
+To export it as a ready-to-roll HTML page, do:
+
+```bash
+$ grunt
+```
 
 
 ### Did you say printing?
 
 Yes!  `generator-school-report` comes with a printer-friendly adaptive template.  Margins and colors are printed nicely, as you would in a school report.  Plus, the fonts are paired for you.  Just plug and play.  Yay.
+
+
+### What's in?
+
+- SASS / SCSS-style stylesheets
+- Compass / Bourbon
+- A stylesheet that is optimized for print, ready to roll
+- Live update - edit your markdown as you go
+- Organize your Markdown 
+
 
 ## Quick tutorial
 
@@ -44,31 +65,58 @@ Yes!  `generator-school-report` comes with a printer-friendly adaptive template.
 | Header | What it does |
 | -- | -- |
 | `h1` | Main title |
-| `h2` | Section title |
+| `h2` | Section title on a new page. |
 | `h3` - `h6` | Sub-section titles |
 
 ### Markdown refresher
 
-**This is bold text**
 
-**This is italic text**
+*This is italic text*
 
 This contains some inline $$$\frac {a + 3} {b + c}$$$ latex text
 
 An equation can be written as follow:
 
+**Multiline**
+
+$$\begin{eqnarray}
+a + b &=& 3 \\\
+b &=& 3 - a
+\end{eqnarray}$$
+
+*Single line*
+
 $$
-\begin{align}
-a + b &= 3 \\
-b &= 3 - a
-\end{align}
+F = G \frac {m_1 m_2} {r^2}
 $$
 
-Writing some `inline code` or perhaps functions:
+Writing some `inline code` or perhaps functions.  If the language is not specified, automatic syntax highlighting is used:
 
 	function() {
 		console.log("hello world");
 	}
+
+Writing some language-specific code: 
+
+```js
+/** Memoization example from 
+  * http://www.sitepoint.com/implementing-memoization-in-javascript/
+  */
+function memoize(func) {
+  var memo = {};
+  var slice = Array.prototype.slice;
+
+  return function() {
+    var args = slice.call(arguments);
+
+    if (args in memo)
+      return memo[args];
+    else
+      return (memo[args] = func.apply(this, args));
+
+  }
+}
+```
 
 Oh, and HTML tags are supported as well.
 
@@ -77,7 +125,11 @@ Oh, and HTML tags are supported as well.
 Dive into the `src/markdown/` folder.  These are concatenated at runtime, sorted alphabetically by filename.
 
 
-## Credit
+## Contribute
+
+Fork this repository at https://github.com/myrtleTree33/generator-school-report
+
+### Credit
 
 - Joel H Tong 
 - `jhtong`, `mrytletree33`
